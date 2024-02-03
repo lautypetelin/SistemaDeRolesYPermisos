@@ -86,7 +86,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         jlTitulo.setFont(new java.awt.Font("Roboto", 1, 36)); // NOI18N
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo.setText("Alta Usuarios");
+        jlTitulo.setText("Editar Usuario");
 
         javax.swing.GroupLayout barraAltaUsuarioLayout = new javax.swing.GroupLayout(barraAltaUsuario);
         barraAltaUsuario.setLayout(barraAltaUsuarioLayout);
@@ -94,19 +94,19 @@ public class ModificarUsuario extends javax.swing.JFrame {
             barraAltaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, barraAltaUsuarioLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jlTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addComponent(jlTitulo)
+                .addGap(54, 54, 54)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         barraAltaUsuarioLayout.setVerticalGroup(
             barraAltaUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(barraAltaUsuarioLayout.createSequentialGroup()
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 53, Short.MAX_VALUE))
             .addGroup(barraAltaUsuarioLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addComponent(jlTitulo)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panelAltaUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
