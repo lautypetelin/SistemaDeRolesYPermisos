@@ -254,7 +254,7 @@ public class LoginInicial extends javax.swing.JFrame {
             return true;
         }
         
-        if(txtContrasenia.getPassword() == null){
+        if(txtContrasenia.getPassword().length == 0){
             JOptionPane.showMessageDialog(this, "No puede dejar vacío el campo \'Contraseña\'", "Error al iniciar sesión", JOptionPane.ERROR_MESSAGE);
             return true;
         }

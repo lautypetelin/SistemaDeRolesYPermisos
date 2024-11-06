@@ -3,6 +3,7 @@ package com.devcoder.login.igu;
 import com.devcoder.login.logica.Controladora;
 import com.devcoder.login.logica.Usuario;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Principal extends javax.swing.JFrame {
@@ -17,10 +18,14 @@ public class Principal extends javax.swing.JFrame {
         
         if(usuario.getRol().getNombreRol().equals("admin")){
             this.panel = new PerfilAdmin(control);
-        }
+        }else
         if(usuario.getRol().getNombreRol().equals("user")){
             this.panel = new PerfilUsuarioComun(control);
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe crear un rol con nombre 'admin' y otro 'user' desde la base de datos para poder visualizar el contenido de las tablas..");
+            return;
         }
+        
         mostrarContenido(panel);
     }
 
