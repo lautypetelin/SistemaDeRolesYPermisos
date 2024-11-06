@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2024 a las 03:39:23
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 06-11-2024 a las 18:41:48
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,26 +40,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`ID`, `DESCRIPCION`, `NOMBREROL`) VALUES
-(1, 'Rol para administradores', 'admin'),
-(2, 'Rol para usuarios comunes', 'user');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `sequence`
---
-
-CREATE TABLE `sequence` (
-  `SEQ_NAME` varchar(50) NOT NULL,
-  `SEQ_COUNT` decimal(38,0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `sequence`
---
-
-INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
-('SEQ_GEN', 50);
+(1, 'Rol para administradores.', 'admin'),
+(2, 'Rol para usuarios comunes.', 'user');
 
 -- --------------------------------------------------------
 
@@ -69,17 +51,26 @@ INSERT INTO `sequence` (`SEQ_NAME`, `SEQ_COUNT`) VALUES
 
 CREATE TABLE `usuario` (
   `ID` int(11) NOT NULL,
+  `APELLIDO` varchar(255) DEFAULT NULL,
   `CONTRASENIA` varchar(255) DEFAULT NULL,
-  `USUARIO` varchar(255) DEFAULT NULL,
-  `fk_rol` int(11) DEFAULT NULL
+  `CORREOELECTRONICO` varchar(255) DEFAULT NULL,
+  `NOMBRE` varchar(255) DEFAULT NULL,
+  `FK_ROL` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`ID`, `CONTRASENIA`, `USUARIO`, `fk_rol`) VALUES
-(1, '123', 'administrador', 1);
+INSERT INTO `usuario` (`ID`, `APELLIDO`, `CONTRASENIA`, `CORREOELECTRONICO`, `NOMBRE`, `FK_ROL`) VALUES
+(1, NULL, 'admin123', 'admin@mail.com', 'Administrador', 1),
+(2, 'Petelin', 'lautaro123', 'lautaroPetelin@mail.com', 'Lautaro', 2),
+(3, 'Palacio', 'nerina123', 'nerinaPalacio@mail.com', 'Nerina', 2),
+(4, 'Gabelli', 'aime123', 'aimeGabelli@mail.com', 'Aimé', 2),
+(6, 'Petelin', 'rody123', 'rodolfoPetelin@mail.com', 'Rodolfo', 2),
+(7, 'Petelin', 'noe123', 'noeliaPetelin@mail.com', 'Noelia', 2),
+(9, 'Silva', 'fabri123', 'fabricioSilva@mail.com', 'Fabricio', 2),
+(13, 'LinkedIn', 'prueba', 'pruebaLinkedIn@mail.com', 'Prueba', 1);
 
 --
 -- Índices para tablas volcadas
@@ -92,17 +83,27 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indices de la tabla `sequence`
---
-ALTER TABLE `sequence`
-  ADD PRIMARY KEY (`SEQ_NAME`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `FK_USUARIO_fk_rol` (`fk_rol`);
+  ADD KEY `FK_USUARIO_FK_ROL` (`FK_ROL`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `rol`
+--
+ALTER TABLE `rol`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -112,7 +113,7 @@ ALTER TABLE `usuario`
 -- Filtros para la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD CONSTRAINT `FK_USUARIO_fk_rol` FOREIGN KEY (`fk_rol`) REFERENCES `rol` (`ID`);
+  ADD CONSTRAINT `FK_USUARIO_FK_ROL` FOREIGN KEY (`FK_ROL`) REFERENCES `rol` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
