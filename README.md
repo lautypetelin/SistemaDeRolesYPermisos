@@ -1,12 +1,18 @@
-# Sistema de Roles y Permisos - Interfaz de Usuario para Login
+# Sistema de Roles y Permisos
 
 Este proyecto implementa una Interfaz Gráfica de Usuario (IGU) para el login de una aplicación con gestión de roles y permisos. La aplicación permite a los usuarios autenticarse, verificar sus credenciales y acceder a funcionalidades específicas según su rol asignado.
 
+![Login y Registro (1)](https://github.com/user-attachments/assets/218447bc-6202-4987-97dc-0731c902c08a)
+
+## Almacenamiento en Base de Datos
+
+Esta aplicación de escritorio registra en una base de datos los datos de usuarios desde la interfaz gráfica de usuario basado en los conceptos del MODELO DE CAPAS.
+
 ## Características de la Interfaz Gráfica de Usuario (IGU)
 
-La IGU cuenta con los siguientes elementos:
+La IGU cuenta con los siguientes elementos para iniciar sesión:
 - Campos de texto para nombre de usuario y contraseña, con etiquetas correspondientes.
-- Botones para iniciar sesión y limpiar los datos.
+- Botones para iniciar sesión, registrarse y limpiar los datos.
 
 ## Funcionalidades del Sistema
 
@@ -22,12 +28,16 @@ La IGU cuenta con los siguientes elementos:
    - Visualización de todos los usuarios.
    - Alta, baja, modificación y lectura de cualquier usuario y sus permisos.
 
+![Pantalla de Administrador (1)](https://github.com/user-attachments/assets/ed419c46-d1f7-4ad1-85bf-c4d5bac830c1)
+
 ### Permisos del Usuario Común (user):
    - Lectura de todos los usuarios.
 
+![Pantalla de Usuario Común (1)](https://github.com/user-attachments/assets/4cc4b234-30ba-44e0-ac71-d6d583deaf97)
+
 3. **Usuarios y Contraseñas de Prueba:**
-   - Usuario Administrador: admin
-   - Contraseña Administrador: 123
+   - Correo de Administrador: admin@mail.com
+   - Contraseña Administrador: admin123
 
 4. **Pantalla de Control de Usuario:**
    - Muestra el nombre del usuario de la sesión actual en la esquina superior derecha.
@@ -39,16 +49,19 @@ La IGU cuenta con los siguientes elementos:
 3. Ejecutar la aplicación.
 4. Utilizar la IGU para iniciar sesión y acceder a las funcionalidades.
 
-Vista previa: [Ver Video](https://www.linkedin.com/feed/update/urn:li:activity:7159646369371062272)
+## Requisitos
 
-## Estructura del Proyecto
+- JDK 17.0.6
+- Algún Sistema Gestor de Base de Datos (SGBD)
+- Importar al Gestor de Base de Datos el archivo .sql (ubicado en la carpeta resources) para poder hacer uso de la persistencia en la aplicación.
 
-El proyecto sigue una estructura basada en el modelo de capas para una organización clara y separación de responsabilidades y hace uso de JPA para la persistencia de datos.
+## Créditos
+
+- **Desarrollado por**: Lautaro Tomás Israel Petelin
+- **Tecnologías utilizadas**: Java 17.0.6, XAMPP
+- **IDE**: Netbeans 17
+- **Autor de la consigna**: Luisina de Paula / TodoCode
 
 ## Contribuciones
 
-¡Las contribuciones son bienvenidas! Si encuentras algún problema o tienes sugerencias de mejora, no dudes en abrir un problema o enviar una solicitud de extracción.
-
----
-
-¡Gracias por utilizar este Sistema de Roles y Permisos con IGU para el Login! Si tienes alguna pregunta o comentario, no dudes en ponerte en contacto.
+¡Las contribuciones son bienvenidas! Si encuentras algún problema o tienes sugerencias de mejora, no dudes en abrir un problema o enviar una pull request.
