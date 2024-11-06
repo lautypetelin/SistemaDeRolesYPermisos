@@ -1,4 +1,6 @@
+com\devcoder\login\igu\CrearUsuarioLogin$3.class
 com\devcoder\login\igu\Principal.class
+com\devcoder\login\igu\PerfilAdmin$5.class
 com\devcoder\login\igu\CrearUsuario$3.class
 com\devcoder\login\igu\EditarUsuario$1.class
 com\devcoder\login\logica\Controladora.class
@@ -10,11 +12,14 @@ com\devcoder\login\persistencia\exceptions\IllegalOrphanException.class
 com\devcoder\login\igu\LoginInicial$3.class
 com\devcoder\login\logica\Rol.class
 com\devcoder\login\persistencia\exceptions\NonexistentEntityException.class
+com\devcoder\login\igu\CrearUsuarioLogin.class
 com\devcoder\login\igu\EditarUsuario$3.class
 com\devcoder\login\igu\LoginInicial$2.class
 com\devcoder\login\igu\PerfilAdmin$3.class
+com\devcoder\login\igu\CrearUsuarioLogin$1.class
 com\devcoder\login\persistencia\UsuarioJpaController.class
 com\devcoder\login\persistencia\ControladoraPersistencia.class
+com\devcoder\login\igu\PerfilUsuarioComun$2.class
 com\devcoder\login\igu\EditarUsuario.class
 com\devcoder\login\igu\PerfilUsuarioComun.class
 com\devcoder\login\logica\Usuario.class
@@ -31,3 +36,4 @@ com\devcoder\login\igu\PerfilAdmin$4.class
 com\devcoder\login\logica\Rol_.class
 com\devcoder\login\logica\Usuario_.class
 com\devcoder\login\persistencia\exceptions\PreexistingEntityException.class
+com\devcoder\login\igu\CrearUsuarioLogin$2.class

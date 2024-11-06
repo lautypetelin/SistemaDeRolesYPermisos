@@ -13,6 +13,11 @@ public class LoginInicial extends javax.swing.JFrame {
         initComponents();
     }
 
+    public LoginInicial(Controladora control) {
+        this.control = control;
+        initComponents();
+    }
+    
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -218,12 +223,12 @@ public class LoginInicial extends javax.swing.JFrame {
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         
-//        CrearUsuarioLogin crearUsuarioLogin = new CrearUsuarioLogin();
-//        crearUsuarioLogin.setTitle("Registro by Lautaro Petelin");
-//        crearUsuarioLogin.setVisible(true);
-//        crearUsuarioLogin.setLocationRelativeTo(null);
-//
-//        dispose();
+        CrearUsuarioLogin crearUsuarioLogin = new CrearUsuarioLogin(control);
+        crearUsuarioLogin.setTitle("Registro by Lautaro Petelin");
+        crearUsuarioLogin.setVisible(true);
+        crearUsuarioLogin.setLocationRelativeTo(null);
+
+        dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
