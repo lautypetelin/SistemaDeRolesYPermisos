@@ -1,28 +1,36 @@
 package com.devcoder.login.logica;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Basic;
 import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Rol implements Serializable {
    
-    //Atributos
+    // Atributos
     @Id
-//    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
+    @Basic
     private String nombreRol;
     private String descripcion;
     @OneToMany (mappedBy="rol")
     private List<Usuario> listaUsuarios;
     
-    //Constructores
+    // Constructores
     public Rol() {}
 
+    public Rol(String nombreRol, String descripcion, List<Usuario> listaUsuarios) {
+        this.nombreRol = nombreRol;
+        this.descripcion = descripcion;
+        this.listaUsuarios = listaUsuarios;
+    }
+    
     public Rol(int id, String nombreRol, String descripcion, List<Usuario> listaUsuarios) {
         this.id = id;
         this.nombreRol = nombreRol;
@@ -30,7 +38,7 @@ public class Rol implements Serializable {
         this.listaUsuarios = listaUsuarios;
     }
 
-    //Métodos getter y setter
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -61,5 +69,11 @@ public class Rol implements Serializable {
 
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+    
+    // Métodos sobreescritos
+    @Override
+    public String toString() {
+        return nombreRol;
     }
 }

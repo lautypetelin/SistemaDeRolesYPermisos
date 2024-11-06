@@ -4,45 +4,50 @@ import com.devcoder.login.logica.Rol;
 import com.devcoder.login.logica.Usuario;
 import com.devcoder.login.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ControladoraPersistencia {
     
-    UsuarioJpaController usuarioJpa = new UsuarioJpaController();
-    RolJpaController rolJpa = new RolJpaController();
+    private UsuarioJpaController usuarioJpa = null;
+    private RolJpaController rolJpa = null;
     
-    public List<Usuario> traerUsuarios() {
-        
-        return usuarioJpa.findUsuarioEntities();
-        //SELECT * FROM usuarios;
+    public ControladoraPersistencia(){
+        usuarioJpa = new UsuarioJpaController();
+        rolJpa = new RolJpaController();
     }
-
-    public void eliminarUsuario(int idUsuario) {
-        try {
-            usuarioJpa.destroy(idUsuario);
-        } catch (NonexistentEntityException ex) {
-//            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public List<Rol> traerRoles() {
-        return rolJpa.findRolEntities();
-    }
-
+    
+    // Usuario -----------------------------------------------------------------
+    
     public void crearUsuario(Usuario user) {
         usuarioJpa.create(user);
     }
-
+    
     public Usuario traerUsuario(int idUsuario) {
         return usuarioJpa.findUsuario(idUsuario);
+    }
+    
+    public List<Usuario> traerUsuarios() { 
+        return usuarioJpa.findUsuarioEntities(); // ≡ SELECT * FROM usuario;
     }
 
     public void editarUsuario(Usuario user) {
         try {
             usuarioJpa.edit(user);
         } catch (Exception ex) {
-//            Logger.getLogger(ControladoraPersistencia.class.getName()).log(Level.SEVERE, null, ex);
+            // Excepción controlada desde la vista EditarUsuario
         }
+    }
+    
+    public void eliminarUsuario(int idUsuario) {
+        try {
+            usuarioJpa.destroy(idUsuario);
+        } catch (NonexistentEntityException ex) {
+            // Excepción controlada desde la vista CrearUsuario
+        }
+    }
+
+    // Rol ---------------------------------------------------------------------
+    
+    public List<Rol> traerRoles() {
+        return rolJpa.findRolEntities(); // ≡ SELECT * FROM rol
     }
 }

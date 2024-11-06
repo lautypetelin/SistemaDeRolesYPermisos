@@ -5,89 +5,67 @@ import java.util.List;
 
 public class Controladora {
     
-    ControladoraPersistencia controlPersis = new ControladoraPersistencia();
+    private ControladoraPersistencia controlPersis = null;
 
-    public Usuario validarUsuario(String usuario, String contrasenia) {
-
+    public Controladora(){
+        controlPersis = new ControladoraPersistencia();
+    }
+    
+    // Usuario -----------------------------------------------------------------
+    
+    public Usuario validarUsuario(String correo, String contrasenia) {
+      
         Usuario encontrado = null;
-        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
         
-        for(Usuario user: listaUsuarios){
-            if(user.getUsuario().equals(usuario)){
+        for(Usuario user: controlPersis.traerUsuarios()){
+            if(user.getCorreoElectronico().equals(correo)){
                 if(user.getContrasenia().equals(contrasenia)){
                     encontrado = user;
+                    break;
+                }else{
+                    encontrado = null;
+                    break;
                 }
+            }else{
+                encontrado = null;
             }
         }
         
         return encontrado;
     }
-
+    
+    public void crearUsuario(String nombre, String apellido, String correo, String contrasenia, Rol rol) {
+        
+        Usuario usuario = new Usuario(nombre, apellido, correo, contrasenia, rol);
+        controlPersis.crearUsuario(usuario);
+    }
+    
+    public Usuario traerUsuario(int idUsuario) {
+        
+        return controlPersis.traerUsuario(idUsuario);
+    }
+    
     public List<Usuario> traerUsuarios() {
+        
         return controlPersis.traerUsuarios();
     }
 
+    public void editarUsuario(int id, String nombre, String apellido, String correo, String contrasenia, Rol rol) {
+        
+        Usuario usuario = new Usuario(id, nombre, apellido, correo, contrasenia, rol);
+        
+        controlPersis.editarUsuario(usuario);
+    }
+    
     public void eliminarUsuario(int idUsuario) {
+        
         controlPersis.eliminarUsuario(idUsuario);
     }
-
+  
+    // Rol ---------------------------------------------------------------------
+    
     public List<Rol> traerRoles() {
+        
         return controlPersis.traerRoles();
-    }
-
-    public void crearUsuario(String nombre, String contrasenia, String rolRecibido) {
-        
-        Usuario user = new Usuario();
-        user.setUsuario(nombre);
-        user.setContrasenia(contrasenia);
-        
-        Rol rol = new Rol();
-        rol = this.traerRol(rolRecibido);
-        
-        if(rol != null){
-            user.setRol(rol);
-            
-            int id = this.buscarUltimoIdUsuarios();
-            user.setId(++id);
-            
-            controlPersis.crearUsuario(user);
-        }  
-    }
-
-    private Rol traerRol(String rolRecibido) {
-        
-        List<Rol> listaRoles = controlPersis.traerRoles();
-        
-        for(Rol rol: listaRoles){
-            if(rol.getNombreRol().equals(rolRecibido)){
-                return rol;
-            }
-        }
-        
-        return null;
-    }
-
-    private int buscarUltimoIdUsuarios() {
-        
-        List<Usuario> listaUsuarios = controlPersis.traerUsuarios();
-        
-        int cantidadUsuarios = listaUsuarios.size();
-        
-        return listaUsuarios.get(cantidadUsuarios - 1).getId();
-    }
-
-    public Usuario traerUsuario(int idUsuario) {
-        return controlPersis.traerUsuario(idUsuario);
-    }
-
-    public void editarUsuario(Usuario user, int id, String nombre, String contrasenia, String rolSt) {
-        
-        user.setId(id);
-        user.setUsuario(nombre);
-        user.setContrasenia(contrasenia);
-        Rol rol = traerRol(rolSt);
-        user.setRol(rol);
-        
-        controlPersis.editarUsuario(user);
     }
 }

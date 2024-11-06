@@ -16,15 +16,16 @@ import javax.persistence.Persistence;
 
 public class RolJpaController implements Serializable {
 
-    public RolJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+    private EntityManagerFactory emf = null;
     
+    // Constructor
     public RolJpaController() {
         this.emf = Persistence.createEntityManagerFactory("loginPU");
     }
     
-    private EntityManagerFactory emf = null;
+    public RolJpaController(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();

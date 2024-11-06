@@ -1,39 +1,51 @@
 package com.devcoder.login.logica;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Basic;
 import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
 public class Usuario implements Serializable {
     
-    //Atributos
+    // Atributos
     @Id
-//    @GeneratedValue(strategy=GenerationType.SEQUENCE)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int id;
     @Basic
-    private String usuario;
+    private String nombre;
+    private String apellido;
+    private String correoElectronico;
     private String contrasenia;
     @ManyToOne
-    @JoinColumn(name="fk_rol")
+    @JoinColumn(name="FK_ROL") // Columna que figurará en la tabla "USUARIO"
     private Rol rol;
     
-    //Constructor
+    // Constructores
     public Usuario() {}
 
-    public Usuario(int id, String usuario, String contrasenia, Rol rol) {
-        this.id = id;
-        this.usuario = usuario;
+    public Usuario(String nombre, String apellido, String correoElectronico, String contrasenia, Rol rol) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
         this.rol = rol;
     }
 
-    //Métodos getter y setter}
+    public Usuario(int id, String nombre, String apellido, String correoElectronico, String contrasenia, Rol rol) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correoElectronico = correoElectronico;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+    }
+
+    // Getters y Setters
     public int getId() {
         return id;
     }
@@ -42,12 +54,28 @@ public class Usuario implements Serializable {
         this.id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
     public String getContrasenia() {
@@ -56,7 +84,7 @@ public class Usuario implements Serializable {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
-    } 
+    }
 
     public Rol getRol() {
         return rol;
@@ -64,5 +92,11 @@ public class Usuario implements Serializable {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }    
+    
+    // Métodos sobreescritos
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
     }
 }

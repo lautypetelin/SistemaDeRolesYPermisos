@@ -15,15 +15,16 @@ import javax.persistence.Persistence;
 
 public class UsuarioJpaController implements Serializable {
 
-    public UsuarioJpaController(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+    private EntityManagerFactory emf = null;
     
+    // Constructor
     public UsuarioJpaController() {
         this.emf = Persistence.createEntityManagerFactory("loginPU");
     }
     
-    private EntityManagerFactory emf = null;
+    public UsuarioJpaController(EntityManagerFactory emf) {
+        this.emf = emf;
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
