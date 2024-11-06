@@ -15,19 +15,53 @@ public class PerfilAdmin extends javax.swing.JPanel {
         this.control = control;
         initComponents();
         setearPrivilegios();
-        cargarTabla();
+        cargarTabla("");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buscador = new javax.swing.JPanel();
+        jlBuscador = new javax.swing.JLabel();
+        txtBuscador = new javax.swing.JTextField();
         botones = new javax.swing.JPanel();
         btnCrearUsuario = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnBorrarUsuario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
+
+        jlBuscador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jlBuscador.setText("Buscar por nombre o apellido:");
+
+        txtBuscador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscadorKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buscadorLayout = new javax.swing.GroupLayout(buscador);
+        buscador.setLayout(buscadorLayout);
+        buscadorLayout.setHorizontalGroup(
+            buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlBuscador)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBuscador, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        buscadorLayout.setVerticalGroup(
+            buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlBuscador)
+                    .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         btnCrearUsuario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCrearUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/createUser24x24.png"))); // NOI18N
@@ -98,9 +132,11 @@ public class PerfilAdmin extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -111,7 +147,10 @@ public class PerfilAdmin extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -170,7 +209,7 @@ public class PerfilAdmin extends javax.swing.JPanel {
 
                     control.eliminarUsuario(idUsuario);
                     JOptionPane.showMessageDialog(this, "Usuario eliminado correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                    cargarTabla();
+                    cargarTabla("");
                 }
             }else{
                 JOptionPane.showMessageDialog(this, "No ha seleccionado ningún registro para eliminar", "Error al eliminar", JOptionPane.ERROR_MESSAGE);
@@ -180,13 +219,21 @@ public class PerfilAdmin extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnBorrarUsuarioActionPerformed
 
+    private void txtBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscadorKeyReleased
+        
+        cargarTabla(txtBuscador.getText());
+    }//GEN-LAST:event_txtBuscadorKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel botones;
     private javax.swing.JButton btnBorrarUsuario;
     private javax.swing.JButton btnCrearUsuario;
     private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JPanel buscador;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlBuscador;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtBuscador;
     // End of variables declaration//GEN-END:variables
 
     private void setearPrivilegios() {
@@ -196,7 +243,7 @@ public class PerfilAdmin extends javax.swing.JPanel {
         btnBorrarUsuario.setEnabled(true);
     }
 
-    private void cargarTabla() {
+    private void cargarTabla(String buscado) {
         
         // Setear que no se pueda cambiar de lugar las columnas
         tblUsuarios.getTableHeader().setReorderingAllowed(false);
@@ -215,7 +262,7 @@ public class PerfilAdmin extends javax.swing.JPanel {
         model.setColumnIdentifiers(titulos);
         
         // Obtenemos la lista de usuarios registrados
-        List<Usuario> listaUsuarios = control.traerUsuarios();
+        List<Usuario> listaUsuarios = control.buscarPersonaPorNombre(buscado);
 
         // Si la lista no está vacía...
         if(!listaUsuarios.isEmpty()){

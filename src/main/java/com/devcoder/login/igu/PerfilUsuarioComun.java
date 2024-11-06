@@ -13,19 +13,53 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
         this.control = control;
         initComponents();
         setearPrivilegios();
-        cargarTabla();
+        cargarTabla("");
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buscador = new javax.swing.JPanel();
+        jlBuscador = new javax.swing.JLabel();
+        txtBuscador = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuarios = new javax.swing.JTable();
         botones = new javax.swing.JPanel();
         btnCrearUsuario = new javax.swing.JButton();
         btnEditarUsuario = new javax.swing.JButton();
         btnBorrarUsuario = new javax.swing.JButton();
+
+        jlBuscador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jlBuscador.setText("Buscar por nombre o apellido:");
+
+        txtBuscador.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtBuscador.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscadorKeyReleased(evt);
+            }
+        });
+
+        javax.swing.GroupLayout buscadorLayout = new javax.swing.GroupLayout(buscador);
+        buscador.setLayout(buscadorLayout);
+        buscadorLayout.setHorizontalGroup(
+            buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlBuscador)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtBuscador)
+                .addContainerGap())
+        );
+        buscadorLayout.setVerticalGroup(
+            buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscadorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(buscadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlBuscador)
+                    .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         tblUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -83,7 +117,9 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 862, Short.MAX_VALUE)
+                    .addComponent(buscador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -94,10 +130,18 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtBuscadorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscadorKeyReleased
+        
+        cargarTabla(txtBuscador.getText());
+    }//GEN-LAST:event_txtBuscadorKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -105,8 +149,11 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
     private javax.swing.JButton btnBorrarUsuario;
     private javax.swing.JButton btnCrearUsuario;
     private javax.swing.JButton btnEditarUsuario;
+    private javax.swing.JPanel buscador;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlBuscador;
     private javax.swing.JTable tblUsuarios;
+    private javax.swing.JTextField txtBuscador;
     // End of variables declaration//GEN-END:variables
 
     private void setearPrivilegios() {
@@ -115,7 +162,7 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
         btnBorrarUsuario.setEnabled(false);
     }
 
-    private void cargarTabla() {
+    private void cargarTabla(String buscado) {
         
         // Setear que no se pueda cambiar de lugar las columnas
         tblUsuarios.getTableHeader().setReorderingAllowed(false);
@@ -134,7 +181,8 @@ public class PerfilUsuarioComun extends javax.swing.JPanel {
         model.setColumnIdentifiers(titulos);
         
         // Obtener la lista de usuarios registrados
-        List<Usuario> listaUsuarios = control.traerUsuarios();
+//        List<Usuario> listaUsuarios = control.traerUsuarios();
+        List<Usuario> listaUsuarios = control.buscarPersonaPorNombre(buscado);
         
         // Si la lista no está vacía...
         if(!listaUsuarios.isEmpty()){

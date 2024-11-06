@@ -218,10 +218,10 @@ public class LoginInicial extends javax.swing.JFrame {
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         
-//        Registro registrarView = new Registro();
-//        registrarView.setTitle("Registro by Lautaro Petelin");
-//        registrarView.setVisible(true);
-//        registrarView.setLocationRelativeTo(null);
+//        CrearUsuarioLogin crearUsuarioLogin = new CrearUsuarioLogin();
+//        crearUsuarioLogin.setTitle("Registro by Lautaro Petelin");
+//        crearUsuarioLogin.setVisible(true);
+//        crearUsuarioLogin.setLocationRelativeTo(null);
 //
 //        dispose();
     }//GEN-LAST:event_btnRegistrarseActionPerformed

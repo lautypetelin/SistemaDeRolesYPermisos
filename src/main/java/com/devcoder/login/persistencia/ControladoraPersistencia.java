@@ -4,6 +4,8 @@ import com.devcoder.login.logica.Rol;
 import com.devcoder.login.logica.Usuario;
 import com.devcoder.login.persistencia.exceptions.NonexistentEntityException;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class ControladoraPersistencia {
     
@@ -29,6 +31,15 @@ public class ControladoraPersistencia {
         return usuarioJpa.findUsuarioEntities(); // ≡ SELECT * FROM usuario;
     }
 
+    public List<Usuario> buscarPersonaPorNombre(String n){
+        
+        EntityManager em = usuarioJpa.getEntityManager();
+        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.nombre LIKE :nombre OR u.apellido LIKE :nombre");
+        query.setParameter("nombre", n + "%");
+        List<Usuario> lista = query.getResultList();
+        return lista;
+    }
+    
     public void editarUsuario(Usuario user) {
         try {
             usuarioJpa.edit(user);

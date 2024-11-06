@@ -97,6 +97,7 @@ public class Usuario implements Serializable {
     // Métodos sobreescritos
     @Override
     public String toString() {
-        return nombre + " " + apellido;
+        String apellido = (this.apellido == null) ? "" : this.apellido;
+        return this.nombre + " " + apellido;
     }
 }

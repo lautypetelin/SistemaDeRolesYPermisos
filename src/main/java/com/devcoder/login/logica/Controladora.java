@@ -49,6 +49,11 @@ public class Controladora {
         
         return controlPersis.traerUsuarios();
     }
+    
+    public List<Usuario> buscarPersonaPorNombre(String nombre){
+
+        return controlPersis.buscarPersonaPorNombre(nombre);
+    }
 
     public void editarUsuario(int id, String nombre, String apellido, String correo, String contrasenia, Rol rol) {
         
